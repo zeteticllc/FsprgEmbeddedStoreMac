@@ -8,44 +8,30 @@
 
 #import "FsprgOrder.h"
 
-
 @implementation FsprgOrder
 
-+ (FsprgOrder *)orderFromData:(NSData *)aData
-{
++ (FsprgOrder *)orderFromData:(NSData *)aData {
 	NSPropertyListFormat *format = nil;
-	NSString *errorDesc = nil;
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_6
-	NSDictionary *aDict = [NSPropertyListSerialization propertyListFromData:aData
-													   mutabilityOption:NSPropertyListImmutable
-													   format:format 
-													   errorDescription:&errorDesc];
-		
-#else
 	NSDictionary *aDict = [NSPropertyListSerialization propertyListWithData:aData
 																	options:NSPropertyListImmutable
 																	 format:format
 																	  error:nil];
-#endif
-	
 	return [[[FsprgOrder alloc] initWithDictionary:aDict] autorelease];
 }
 
-- (FsprgOrder *)initWithDictionary:(NSDictionary *)aDictionary
-{
+- (FsprgOrder *)initWithDictionary:(NSDictionary *)aDictionary {
 	self = [super init];
 	if (self != nil) {
 		[self setRaw:aDictionary];
 	}
 	return self;
-}									
-- (NSDictionary *)raw
-{
+}
+
+- (NSDictionary *)raw {
     return [[raw retain] autorelease]; 
 }
-- (void)setRaw:(NSDictionary *)aDictionary
-{
+
+- (void)setRaw:(NSDictionary *)aDictionary {
     if (raw != aDictionary) {
         [raw release];
         raw = [aDictionary retain];

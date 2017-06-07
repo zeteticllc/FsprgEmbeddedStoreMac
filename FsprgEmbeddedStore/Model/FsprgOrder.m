@@ -16,7 +16,7 @@
 																	options:NSPropertyListImmutable
 																	 format:format
 																	  error:nil];
-	return [[[FsprgOrder alloc] initWithDictionary:aDict] autorelease];
+	return [[FsprgOrder alloc] initWithDictionary:aDict];
 }
 
 - (FsprgOrder *)initWithDictionary:(NSDictionary *)aDictionary {
@@ -28,13 +28,12 @@
 }
 
 - (NSDictionary *)raw {
-    return [[raw retain] autorelease]; 
+    return raw; 
 }
 
 - (void)setRaw:(NSDictionary *)aDictionary {
     if (raw != aDictionary) {
-        [raw release];
-        raw = [aDictionary retain];
+        raw = aDictionary;
     }
 }
 
@@ -118,7 +117,6 @@
 {
     [self setRaw:nil];
 	
-    [super dealloc];
 }
 
 @end
